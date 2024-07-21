@@ -2,17 +2,23 @@ import { Link } from "react-router-dom"
 
 const Nav = () => {
     return (
-        <div className="nav-container">
             <nav>
-                <h1>Logo</h1>
-
-                <div>
-                    <Link to='/'>Home</Link>
-                    <Link to='/signin'>Sign in</Link>
-                    <Link to='/signup'>Sign up</Link>
-                </div>
+                <Link to='/'>
+                    <h1 className="logo">Auth App</h1>
+                </Link>
+                
+                <ul>
+                    <Link to='/'>
+                        <li>Home</li>
+                    </Link>
+                    <Link to='/signin'>
+                        <li>Sign in</li>
+                    </Link>
+                    <Link to='/signup'>
+                        <li>Sign up</li>
+                    </Link>
+                </ul>
             </nav>
-        </div>
     )
 }
 

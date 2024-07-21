@@ -8,9 +8,9 @@ import Signin from './components/Signin'
 const App = () => {
   return (
       <BrowserRouter>
-        <div>
+        <header>
           <Nav />
-        </div>
+        </header>
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='/about' element={<About />}></Route>
