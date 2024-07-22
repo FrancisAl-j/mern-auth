@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 // Files
 const connectDB = require('./config');
+const User = require('./models/userModel');
 
 const app = express();
 app.use(express.json());
