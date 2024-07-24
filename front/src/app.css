@@ -1,3 +1,11 @@
+:root {
+    --darkest: #1e1e1e;
+    --darker: #252526;
+    --dark: #2d2d30;
+    --light-dark: #3e3e42;
+    --blue: #007acc;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,10 +14,14 @@
     text-decoration: none;
     /*outline: dotted red 1px;*/
 }
+body {
+    width: 100%;
+    background:	var(--light-dark);
+}
 header {
     width: 100%;
     height: 74px;
-    background: #343434;
+    background: var(--darker);
 }
 nav {
     display: flex;
@@ -38,4 +50,41 @@ ul li:hover {
     background: #301934;
     border-radius: 25px;
     border: solid #fff 1px;
+}
+
+/* Sign up form */
+.form-wrapper {
+    height: auto;
+    width: min(100% - 20px, 800px);
+    background: var(--darkest);
+    border-radius: 20px;
+}
+.form-wrapper h1 {
+    color: #fff;
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 2.5rem;
+}
+.form-container {
+    width: 100%;
+    padding: 0 30px;
+}
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.form-container form .form-elements {
+    display: flex;
+    flex-direction: column;
+}
+.form-container form .form-elements label {
+    color: #fff;
+    font-size: 1.5rem;
+}
+.form-container form .form-elements input {
+    background: #B2BEB5;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    padding: 5px 10px;
 }
