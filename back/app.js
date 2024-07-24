@@ -23,4 +23,17 @@ app.listen(PORT, () =>{
 // API routes
 app.use('/user', userRoute);
 
+// Creating an account wiht authentication
 app.use('/auth', authRoute);
+
+// Creating a middleware to handle errors
+app.use((err, req, res, next) => {
+    const statusCode = err.statusCode || 500;
+    const message = err.message || "Internal Server Error"
+
+    return res.status(statusCode).json({
+        success: false,
+        message,
+        statusCode
+    }) 
+});
