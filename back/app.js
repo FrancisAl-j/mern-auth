@@ -23,7 +23,7 @@ app.listen(PORT, () =>{
 // API routes
 app.use('/user', userRoute);
 
-// Creating an account wiht authentication
+// Creating an account with authentication
 app.use('/auth', authRoute);
 
 // Creating a middleware to handle errors
