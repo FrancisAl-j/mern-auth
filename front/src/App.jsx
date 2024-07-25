@@ -8,15 +8,17 @@ import Signin from './components/Signin'
 const App = () => {
   return (
       <BrowserRouter>
-        <header>
-          <Nav />
-        </header>
-        <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='/about' element={<About />}></Route>
-          <Route path='/signup' element={<Signup />}></Route>
-          <Route path='/signin' element={<Signin />}></Route>
-        </Routes>
+        <div className='container'>
+          <header>
+            <Nav />
+          </header>
+          <Routes>
+            <Route path='/' element={<Home />}></Route>
+            <Route path='/about' element={<About />}></Route>
+            <Route path='/signup' element={<Signup />}></Route>
+            <Route path='/signin' element={<Signin />}></Route>
+          </Routes>
+        </div>
       </BrowserRouter>
   )
 }

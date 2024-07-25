@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const Signup = () => {
     return (
         <div className="form-wrapper">
@@ -29,8 +31,15 @@ const Signup = () => {
                         />
                     </div>
 
-                    <button type="submit">Sign up</button>
+                    <button className="signup" type="submit">Sign up</button>
                 </form>
+
+                <div className="question">
+                    <p>Have an account? </p>
+                    <Link to='/signin'>
+                        <span>Click here.</span>
+                    </Link>
+                </div>
             </div>
         </div>
     )

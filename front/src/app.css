@@ -14,6 +14,10 @@
     text-decoration: none;
     /*outline: dotted red 1px;*/
 }
+.container {
+    width: 100%;
+    background:	var(--light-dark);
+}
 body {
     width: 100%;
     background:	var(--light-dark);
@@ -58,6 +62,7 @@ ul li:hover {
     width: min(100% - 20px, 800px);
     background: var(--darkest);
     border-radius: 20px;
+    margin: 50px auto;
 }
 .form-wrapper h1 {
     color: #fff;
@@ -67,7 +72,7 @@ ul li:hover {
 }
 .form-container {
     width: 100%;
-    padding: 0 30px;
+    padding: 20px 30px;
 }
 .form-container form {
     display: flex;
@@ -85,6 +90,29 @@ ul li:hover {
 .form-container form .form-elements input {
     background: #B2BEB5;
     font-size: 1.2rem;
-    border-radius: 10px;
-    padding: 5px 10px;
+    border-radius: 25px;
+    padding: 5px 20px;
+}
+.form-container form .signup {
+    padding: 5px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 1.3rem;
+    background: var(--blue);
+    color: var(--darkest);
+}
+.form-container form .signup:hover {
+    background: var(--light-dark);
+    color: #fff;
+}
+.form-container .question {
+    margin-top: 10px;
+}
+.form-container .question p {
+    display: inline;
+    color: #fff;
+}
+.form-container .question span{
+    color: var(--blue);
 }
