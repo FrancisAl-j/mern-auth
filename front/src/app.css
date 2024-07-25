@@ -116,3 +116,6 @@ ul li:hover {
 .form-container .question span{
     color: var(--blue);
 }
+.form-container .error {
+    color: red;
+}
