@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 const Signup = () => {
@@ -10,6 +10,7 @@ const Signup = () => {
     })
     const [ error, setError ] = useState(false)
     const [ loading, setLoading ] = useState(false)
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -42,6 +43,8 @@ const Signup = () => {
 
             setLoading(false)
             
+            navigate('/signin')
+
         } catch (error) {
             setLoading(false)
             setError(true)
@@ -57,7 +60,7 @@ const Signup = () => {
             <div className="form-container">
                 <form onSubmit={handleSubmit}>
                     <div className="form-elements">
-                        <label>Username</label>
+                        <label htmlFor='username'>Username</label>
                         <input type="text" 
                                name="username" 
                                id="username"
@@ -67,7 +70,7 @@ const Signup = () => {
                     </div>
 
                     <div className="form-elements">
-                        <label>Email</label>
+                        <label htmlFor='email'>Email</label>
                         <input type="email" 
                                name="email" 
                                id="email"
@@ -77,7 +80,7 @@ const Signup = () => {
                     </div>
 
                     <div className="form-elements">
-                        <label>Password</label>
+                        <label htmlFor='password'>Password</label>
                         <input type="password" 
                                name="password" 
                                id="password"
