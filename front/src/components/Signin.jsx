@@ -2,8 +2,11 @@ import axios from "axios";
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 // useNavigate is use to go with another link if the authenication is successful
+import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice";
+import { useDispatch } from "react-redux";
 
 const Signin = () => {
+    const dispatch = useDispatch();
     const [ input, setInput ] = useState({
         email: '',
         password: ''
@@ -26,8 +29,8 @@ const Signin = () => {
         e.preventDefault();
         
         try {
-            setLoading(true)
-            setError(false)
+            dispatch(signInStart());
+            dispatch(signInFailure())
             const res = await axios.post('http://localhost:5000/auth/signin', input)
 
             setInput({
@@ -35,13 +38,12 @@ const Signin = () => {
                 password: ''
             })  
 
-            setLoading(true)
+            dispatch(signInSuccess());
 
             navigate('/');
 
         } catch (error) {
-            setLoading(false);
-            setError(true);
+            dispatch(signInFailure(error));
         }
         
     }
