@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 // useNavigate is use to go with another link if the authenication is successful
 import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Signin = () => {
     const dispatch = useDispatch();
@@ -11,8 +11,7 @@ const Signin = () => {
         email: '',
         password: ''
     })
-    const [ error, setError ] = useState(false);
-    const [ loading, setLoading ] = useState(false);
+    const { loading, error } = useSelector((state) => state.user); // to get the global state
     const navigate = useNavigate();
 
     const handleChange = (e) => {
