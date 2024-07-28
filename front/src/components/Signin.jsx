@@ -29,20 +29,38 @@ const Signin = () => {
         
         try {
             dispatch(signInStart());
-            dispatch(signInFailure())
+            
             const res = await axios.post('http://localhost:5000/auth/signin', input)
+
+            const data = res.data;
+
+            
+            if (res.status === 200) {
+                // Sign-in successful
+                dispatch(signInSuccess(data));
+                navigate('/');
+            } else {
+                // Sign-in failed, dispatch failure action
+                dispatch(signInFailure({ message: 'Sign-in failed. Please check your email and password.' }));
+            }
 
             setInput({
                 email: '',
                 password: ''
             })  
-
-            dispatch(signInSuccess());
-
-            navigate('/');
-
         } catch (error) {
-            dispatch(signInFailure(error));
+            if (error.response) {
+                const status = error.response.status;
+                if (status === 404) {
+                    dispatch(signInFailure({ message: 'User not found. Please check your email and password.' }));
+                } else if (status === 401) {
+                    dispatch(signInFailure({ message: 'Invalid credentials. Please check your email and password.' }));
+                } else {
+                    dispatch(signInFailure({ message: 'An unexpected error occurred. Please try again.' }));
+                }
+            } else {
+                dispatch(signInFailure({ message: 'Network error. Please try again.' }));
+            }
         }
         
     }
@@ -85,7 +103,7 @@ const Signin = () => {
                         <span>Sign up now.</span>
                     </Link>
                 </div>
-                <p className='error'>{error && "Something went wrong!"}</p>
+                {error && <p className='error'>{error.message || "Something went wrong!"}</p>}
             </div>
         </div>
     )
