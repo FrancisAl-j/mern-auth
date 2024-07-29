@@ -8,6 +8,6 @@ router.post("/signup", controller.signup);
 router.post("/signin", controller.signin);
 
 // For google acounts
-router.post("/google");
+router.post("/google", controller.google);
 
 export default router;
