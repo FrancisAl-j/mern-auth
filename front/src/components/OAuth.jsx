@@ -1,3 +1,4 @@
+// This is for Google account signup and signin
 import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
 import { app } from "../firebase.js";
 
