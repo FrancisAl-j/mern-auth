@@ -3,8 +3,11 @@ import controller from "../controller/authController.js"; // Always add .js on a
 
 const router = express.Router();
 
-router.post('/signup', controller.signup);
+router.post("/signup", controller.signup);
 
-router.post('/signin', controller.signin);
+router.post("/signin", controller.signin);
 
-export default router
+// For google acounts
+router.post("/google");
+
+export default router;

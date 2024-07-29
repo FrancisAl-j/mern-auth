@@ -24,3 +24,5 @@ npm i redux-persist <to keep the data in the local storage so that if the user r
 
 Things to learn
 -combineReducer- => it allows you to combine multiple reducer functions into a single function that can be passed to the Redux store
+
+(...rest) => gathers the remaining properties of validUser.\_doc into a new object called rest, excluding password.
