@@ -9,13 +9,18 @@ npm create vite@latest
 npm i axios react-redux @reduxjs/toolkit react-router-dom
 <axios - is for getting the logic from the nodejs backend
 
- react-redux & @reactjs/toolkit - is for creating the global state for more complex web building
- 
- react-router-dom - is used so that if you click for navigation it will not refesh the page or browser
+react-redux & @reactjs/toolkit - is for creating the global state for more complex web building
+
+react-router-dom - is used so that if you click for navigation it will not refesh the page or browser
+
 >
 
 npm i redux-persist <to keep the data in the local storage so that if the user refreshes the browser the data will not be removed or vanished from the web>
 
+- For Using firebase for google accounts -
+  npm install firebase
+  (After installing firebase we need to follow the steps and create a file to paste the code given by firebase the file in this project is - Firebase.js -
+  This is how you use dotenv on react = import.meta.env.VARIABLE_NAME =)
 
 Things to learn
 -combineReducer- => it allows you to combine multiple reducer functions into a single function that can be passed to the Redux store
