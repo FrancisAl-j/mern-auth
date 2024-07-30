@@ -20,7 +20,9 @@ const userSchema = new mongoose.Schema(
     },
 
     profilePicture: {
+      // Added for profile picture if signup if sign up with google it will take their profile picture in google
       type: String,
+      // The default is for account sign up without usingn google account
       default:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb51ZwKCKqU4ZrB9cfaUNclbeRiC-V-KZsfQ&s",
     },
