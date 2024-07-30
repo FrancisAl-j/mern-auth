@@ -12,12 +12,12 @@ const OAuth = () => {
       const provider = new GoogleAuthProvider();
       const auth = getAuth(app);
       const result = await signInWithPopup(auth, provider);
-      console.log(result);
       const res = await axios.post("http://localhost:5000/auth/google", {
         name: result.user.displayName,
         email: result.user.email,
-        photo: result.user.photoUrl,
+        photo: result.user.photoURL,
       });
+      console.log(res.data);
       dispatch(signInSuccess(res.data));
     } catch (error) {
       console.log("Could not login with google", error);
