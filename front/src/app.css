@@ -192,3 +192,13 @@ ul li:hover {
   cursor: pointer;
   font-size: 1.2rem;
 }
+.img-text {
+  align-self: center;
+  color: #fff;
+}
+.img-err {
+  color: red;
+}
+.img-success {
+  color: green;
+}

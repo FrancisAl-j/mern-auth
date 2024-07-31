@@ -26,3 +26,16 @@ Things to learn
 -combineReducer- => it allows you to combine multiple reducer functions into a single function that can be passed to the Redux store
 
 (...rest) => gathers the remaining properties of validUser.\_doc into a new object called rest, excluding password.
+
+code for firebase to allow user to only upload images codes below:
+
+service firebase.storage {
+match /b/{bucket}/o {
+match /{allPaths=\*_} {
+allow read;
+allow write: if
+request.resource.size < 2 _ 1024 _ 1024 &&
+request.resource.contentType.matches('image/._')
+}
+}
+}
