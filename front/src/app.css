@@ -133,3 +133,62 @@ ul li:hover {
   background: #db4437;
   color: #fff;
 }
+
+/* CSS for profile */
+.profile-container {
+  width: min(100% - 25px, 700px);
+  margin: 20px auto;
+  background: var(--dark);
+  border-radius: 30px;
+  padding: 20px;
+}
+.profile-container h1 {
+  text-align: center;
+  color: #fff;
+}
+.profile-container form {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+}
+.profile-container form img {
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 115px;
+  align-self: center;
+  margin: 20px;
+  margin-top: 40px;
+}
+.profile-container form .body-container {
+  display: flex;
+  flex-direction: column;
+}
+.profile-container form .body-container input {
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 1.4rem;
+  margin: 5px 0;
+}
+.update-btn {
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 1.4rem;
+  background: var(--blue);
+  cursor: pointer;
+  color: #fff;
+  margin: 15px 0;
+}
+.update-btn:hover {
+  background: green;
+}
+.btns {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+.btns span {
+  color: red;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
