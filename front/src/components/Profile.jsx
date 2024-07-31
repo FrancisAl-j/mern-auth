@@ -10,10 +10,10 @@ import { app } from "../firebase";
 
 const Profile = () => {
   const { currentUser } = useSelector((state) => state.user);
-  const [image, setImage] = useState(undefined);
-  const [imageLoading, setImageLoading] = useState(0);
-  const [imageError, setImageError] = useState(false);
-  const [formData, setFormData] = useState({});
+  const [image, setImage] = useState(undefined); //State to store image
+  const [imageLoading, setImageLoading] = useState(0); // State to handle the loading of image
+  const [imageError, setImageError] = useState(false); // handles error
+  const [formData, setFormData] = useState({}); // To get he download URL of the image
 
   const fileRef = useRef(null);
 
@@ -23,6 +23,7 @@ const Profile = () => {
     }
   }, [image]);
 
+  //Handling upload to firebase
   const handleFileUpload = async (image) => {
     const storage = getStorage(app);
     const fileName = new Date().getTime() + image.name;
