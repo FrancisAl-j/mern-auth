@@ -1,8 +1,12 @@
-import express from 'express';
-import userController from '../controller/userController.js';
+import express from "express";
+import controller from "../controller/userController.js";
+import { verifyToken } from "../utils/verifyUser.js";
 
 const router = express.Router();
 
-router.get('/', userController);
+router.get("/", controller.UserController);
 
-export default router
+// Updating user profile
+router.post("/update/:id", verifyToken, controller.updateController);
+
+export default router;

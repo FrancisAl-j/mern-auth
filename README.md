@@ -39,3 +39,6 @@ request.resource.contentType.matches('image/._')
 }
 }
 }
+
+In the update profile part we need to install cookie-parser
+npm i cookie-parser (after you install it put it in your main js in my case its app.js)
