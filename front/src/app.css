@@ -122,8 +122,11 @@ ul li:hover {
 .form-container .question span {
   color: var(--blue);
 }
-.form-container .error {
+.error {
   color: red;
+}
+.success {
+  color: green;
 }
 .googleBtn {
   padding: 5px 20px;

@@ -1,16 +1,16 @@
 // Middleware for checking the cookies of a user
-import jwt from "jsonwebtoken";
 import { errorHandler } from "./error.js";
-import cookieParser from "cookie-parser";
+import jwt from "jsonwebtoken";
 
 export const verifyToken = (req, res, next) => {
-  const token = req.cookies.access_token;
+  const token = req.cookies.token;
 
   if (!token) return next(errorHandler(401, "You are not authenticated!"));
 
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) return next(errorHandler(401, "Token is not valid"));
 
+    console.log("Decoded user:", user); // Debugging line
     req.user = user;
     next();
   });

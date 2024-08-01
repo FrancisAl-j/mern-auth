@@ -1,19 +1,35 @@
-import { useSelector } from "react-redux";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
+
 import {
   getDownloadURL,
   getStorage,
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
+
 import { app } from "../firebase";
 
+import {
+  updateStart,
+  updateSuccess,
+  updateFailure,
+} from "../redux/user/userSlice";
+
 const Profile = () => {
-  const { currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const { currentUser, loading, error } = useSelector((state) => state.user);
   const [image, setImage] = useState(undefined); //State to store image
   const [imageLoading, setImageLoading] = useState(0); // State to handle the loading of image
   const [imageError, setImageError] = useState(false); // handles error
-  const [formData, setFormData] = useState({}); // To get he download URL of the image
+  const [formData, setFormData] = useState({
+    username: currentUser.username,
+    email: currentUser.email,
+    password: currentUser.password,
+    profilePicture: currentUser.profilePicture,
+  }); // State where the data will be stored
+  const [success, setSuccess] = useState(false); // Will send the message if the update is success
 
   const fileRef = useRef(null);
 
@@ -50,10 +66,51 @@ const Profile = () => {
     );
   };
 
+  // Handle the change of the inputs
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prevData) => {
+      return {
+        ...prevData,
+        [name]: value,
+      };
+    });
+  };
+
+  // Updating a profile
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.put(
+        `http://localhost:5000/user/update/${currentUser._id}`,
+        formData,
+        {
+          withCredentials: true,
+        }
+      );
+      const data = res.data;
+      console.log(data);
+      if (res.status === 200) {
+        dispatch(updateSuccess(data));
+        setSuccess(true);
+      } else {
+        dispatch(
+          updateFailure({
+            message: "Profile update failed!",
+          })
+        );
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
+  };
+
   return (
     <div className="profile-container">
       <h1>Profile</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="file"
           ref={fileRef}
@@ -82,20 +139,33 @@ const Profile = () => {
             type="text"
             defaultValue={currentUser.username}
             placeholder="Username"
+            name="username"
+            onChange={handleChange}
           />
           <input
             type="email"
             defaultValue={currentUser.email}
             placeholder="Email"
+            name="email"
+            onChange={handleChange}
           />
-          <input type="password" placeholder="Password" />
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            onChange={handleChange}
+          />
         </div>
-        <button className="update-btn">Update</button>
+        <button type="submit" className="update-btn">
+          {loading ? "Updating" : "Update"}
+        </button>
       </form>
       <div className="btns">
         <span>Delete Account</span>
         <span>Sign out</span>
       </div>
+      <p className="error">{error && "Something went wrong"}</p>
+      <p className="success">{success && "Update successfully"}</p>
     </div>
   );
 };

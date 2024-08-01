@@ -10,29 +10,36 @@ const UserController = (req, res) => {
 
 const updateController = async (req, res, next) => {
   const { id } = req.params;
-  //const { username, email, password, profilePicture } = req.body;
+  const { username, email, password, profilePicture } = req.body;
+
+  // Check if the user is trying to update their own account
   if (req.user.id !== id) {
-    return next(errorHandler(401, "You can update only  account"));
+    return next(errorHandler(401, "You can update only your own account"));
   }
+
   try {
-    if (req.body.password) {
-      req.body.password = bcryptjs.hashSync(password, 10);
+    // Hash the password if provided
+    const updatedData = {
+      username,
+      email,
+      profilePicture,
+    };
+
+    if (password) {
+      updatedData.password = bcryptjs.hashSync(password, 10);
     }
 
-    const updatedUser = User.findByIdAndUpdate(
-      id,
-      {
-        $set: {
-          username: req.body.username,
-          email: req.body.email,
-          password: req.body.password,
-          profilePicture: req.body.profilePicture,
-        },
-      },
+    // Update the user
+    const updatedUser = await User.findByIdAndUpdate(id, updatedData, {
+      new: true,
+    });
 
-      { new: true }
-    );
-    const { password, ...rest } = updatedUser._doc;
+    if (!updatedUser) {
+      return next(errorHandler(404, "User not found"));
+    }
+
+    // Omit the password from the response
+    const { password: _, ...rest } = updatedUser._doc;
     res.status(200).json(rest);
   } catch (error) {
     next(error);

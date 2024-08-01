@@ -36,7 +36,9 @@ const Signin = () => {
     try {
       dispatch(signInStart());
 
-      const res = await axios.post("http://localhost:5000/auth/signin", input);
+      const res = await axios.post("http://localhost:5000/auth/signin", input, {
+        withCredentials: true,
+      });
 
       const data = res.data;
 

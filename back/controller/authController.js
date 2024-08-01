@@ -2,6 +2,8 @@ import User from "../models/userModel.js";
 import bcryptjs from "bcryptjs"; // For encrypting the password inside database for security
 import { errorHandler } from "../utils/error.js";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
 // Authentication for signup
 const signup = async (req, res, next) => {
@@ -55,7 +57,7 @@ const google = async (req, res, next) => {
       const { password: hashedPassword, ...rest } = user._doc;
       const expiryDate = new Date(Date.now() + 3600000); // Expiration of cookie is 1 hour
       res
-        .cookie("token", token, { httpOnly: true, expires: expiryDate })
+        .cookie("token", token, { httpOnly: false, expires: expiryDate })
         .status(200)
         .json(rest);
     } else {
