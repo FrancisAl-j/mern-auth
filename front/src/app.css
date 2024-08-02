@@ -205,3 +205,55 @@ ul li:hover {
 .img-success {
   color: green;
 }
+
+/* CSS FOR HOMEPAGE */
+.home-container {
+  width: min(100% - 40px, 1300px);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 40px;
+  margin: 10px auto;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.home-container .content-container {
+  width: min(100% - 25px, 900px);
+}
+.home-container h1 {
+  color: #fff;
+  text-align: center;
+  margin: 20px 0;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+}
+.home-container p {
+  color: #fff;
+  font-size: clamp(0.8rem, 2vw, 1.5rem);
+  text-align: justify;
+}
+.pfp-container {
+  background: var(--darkest);
+  display: flex;
+  width: min(100% - 10px, auto);
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+  border-radius: 100px;
+  align-self: flex-end;
+  gap: 20px;
+}
+.pfp-container .pfp {
+  height: 60px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+.pfp-container .logout {
+  height: 30px;
+  aspect-ratio: 1/1;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.pfp-container .logout:hover {
+  fill: red;
+}
