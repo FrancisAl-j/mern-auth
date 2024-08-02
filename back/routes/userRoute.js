@@ -9,4 +9,7 @@ router.get("/", controller.UserController);
 // Updating user profile
 router.put("/update/:id", verifyToken, controller.updateController);
 
+// Deleting a user
+router.delete("/delete/:id", verifyToken, controller.deleteController);
+
 export default router;

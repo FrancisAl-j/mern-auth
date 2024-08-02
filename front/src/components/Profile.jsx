@@ -15,6 +15,10 @@ import {
   updateStart,
   updateSuccess,
   updateFailure,
+  deleteUserStart,
+  deleteUserSuccess,
+  deleteUserFailure,
+  signout,
 } from "../redux/user/userSlice";
 
 const Profile = () => {
@@ -83,6 +87,7 @@ const Profile = () => {
     e.preventDefault();
 
     try {
+      dispatch(updateStart());
       const res = await axios.put(
         `http://localhost:5000/user/update/${currentUser._id}`,
         formData,
@@ -103,7 +108,95 @@ const Profile = () => {
         );
       }
     } catch (error) {
-      console.error("Error updating profile:", error);
+      if (error.response) {
+        const status = error.response.status;
+        if (status === 404) {
+          dispatch(
+            updateFailure({
+              message: "User not found.",
+            })
+          );
+        } else if (status === 401) {
+          dispatch(
+            updateFailure({
+              message: "Unautherized user",
+            })
+          );
+        } else {
+          dispatch(
+            updateFailure({
+              message: "An unexpected error occurred. Please try again.",
+            })
+          );
+        }
+      } else {
+        dispatch(
+          updateFailure({ message: "Network error. Please try again." })
+        );
+      }
+    }
+  };
+
+  // Deleting account
+  const handleDelete = async () => {
+    try {
+      dispatch(deleteUserStart());
+      if (window.confirm("Are you sure you want to delete your account?")) {
+        const res = await axios.delete(
+          `http://localhost:5000/user/delete/${currentUser._id}`,
+          {
+            withCredentials: true,
+          }
+        );
+        if (res.status === 200) {
+          dispatch(deleteUserSuccess());
+        } else {
+          dispatch(
+            deleteUserFailure({
+              message: "There was a problem deleting your account!",
+            })
+          );
+        }
+      }
+    } catch (error) {
+      if (error.response) {
+        const status = error.response.status;
+        if (status === 404) {
+          dispatch(
+            deleteUserFailure({
+              message: "User not found.",
+            })
+          );
+        } else if (status === 401) {
+          dispatch(
+            deleteUserFailure({
+              message: "Unautherized User!.",
+            })
+          );
+        } else {
+          dispatch(
+            deleteUserFailure({
+              message: "An unexpected error occurred. Please try again.",
+            })
+          );
+        }
+      } else {
+        dispatch(
+          deleteUserFailure({ message: "Network error. Please try again." })
+        );
+      }
+    }
+  };
+
+  // For Signing out account
+  const handleSignout = async () => {
+    try {
+      await axios.get(`http://localhost:5000/auth/signout`, {
+        withCredentials: true,
+      });
+      dispatch(signout());
+    } catch (error) {
+      console.log("Something went wrong!");
     }
   };
 
@@ -161,8 +254,8 @@ const Profile = () => {
         </button>
       </form>
       <div className="btns">
-        <span>Delete Account</span>
-        <span>Sign out</span>
+        <span onClick={handleDelete}>Delete Account</span>
+        <span onClick={handleSignout}>Sign out</span>
       </div>
       <p className="error">{error && "Something went wrong"}</p>
       <p className="success">{success && "Update successfully"}</p>

@@ -49,6 +49,7 @@ const signin = async (req, res, next) => {
   }
 };
 
+// For google athentication
 const google = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email });
@@ -86,4 +87,9 @@ const google = async (req, res, next) => {
   }
 };
 
-export default { signup, signin, google };
+// For signing out the account
+const signout = (req, res) => {
+  res.clearCookie("token").status(200).json("Sign out success!");
+};
+
+export default { signup, signin, google, signout };

@@ -8,6 +8,7 @@ const UserController = (req, res) => {
   });
 };
 
+// Updating profile
 const updateController = async (req, res, next) => {
   const { id } = req.params;
   const { username, email, password, profilePicture } = req.body;
@@ -46,4 +47,18 @@ const updateController = async (req, res, next) => {
   }
 };
 
-export default { UserController, updateController };
+// Deleting user
+const deleteController = async (req, res, next) => {
+  const { id } = req.params;
+  if (req.user.id !== id) {
+    return next(errorHandler(401, "You can delete only your account!"));
+  }
+  try {
+    const user = await User.findByIdAndDelete(id);
+    res.status(200).json("Account successfully deleted.");
+  } catch (error) {
+    next(error);
+  }
+};
+
+export default { UserController, updateController, deleteController };
