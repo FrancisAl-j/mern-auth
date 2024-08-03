@@ -298,3 +298,7 @@ ul li:hover {
   font-size: clamp(1.1rem 2.5vw, 1.9rem);
   color: #fff;
 }
+
+/* For smaller screen size */
+@media screen and (max-width: 600px) {
+}

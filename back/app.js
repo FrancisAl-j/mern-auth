@@ -4,6 +4,8 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import path from "path"; // Necessary for deploying
+
 //files
 import connectDB from "./config.js";
 import userRoute from "./routes/userRoute.js";
@@ -11,6 +13,17 @@ import authRoute from "./routes/authRoute.js";
 
 const app = express();
 app.use(express.json());
+
+/* 
+  The code below will need for deploying the app
+*/
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "/front/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "front", "dist", "index.html"));
+}); // For deploying app line 19-24
+
 app.use(
   cors({
     origin: ["http://localhost:5173"],
