@@ -245,7 +245,7 @@ ul li:hover {
   gap: 20px;
   position: absolute;
   right: 0;
-  margin: 20px;
+  margin: 20px 6px;
 }
 .pfp-container .pfp {
   height: 60px;
@@ -277,6 +277,7 @@ ul li:hover {
   justify-content: center;
   align-items: center;
   position: relative;
+  line-height: 75px;
 }
 .about-container h1 {
   color: #fff;
@@ -288,4 +289,12 @@ ul li:hover {
   color: #fff;
   font-size: clamp(0.8rem, 2vw, 1.5rem);
   text-align: justify;
+}
+.about-container h2 {
+  font-size: clamp(1.3rem 3vw, 2rem);
+  color: #fff;
+}
+.about-container h3 {
+  font-size: clamp(1.1rem 2.5vw, 1.9rem);
+  color: #fff;
 }
