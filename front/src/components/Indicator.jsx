@@ -21,29 +21,22 @@ const Indicator = () => {
   };
 
   return (
-    <div>
-      <div className="pfp-container">
-        <img
-          className="pfp"
-          src={currentUser ? currentUser.profilePicture : DefaultProfile}
-          alt="profile"
-        />
-        <p>
-          {currentUser
-            ? currentUser.username
-            : `Guest${Math.floor(Math.random() * 999)}`}
-        </p>
-        {currentUser ? (
-          <img
-            onClick={handleSignout}
-            className="logout"
-            src={SignOut}
-            alt=""
-          />
-        ) : (
-          ""
-        )}
-      </div>
+    <div className="pfp-container">
+      <img
+        className="pfp"
+        src={currentUser ? currentUser.profilePicture : DefaultProfile}
+        alt="profile"
+      />
+      <p>
+        {currentUser
+          ? currentUser.username
+          : `Guest${Math.floor(Math.random() * 999)}`}
+      </p>
+      {currentUser ? (
+        <img onClick={handleSignout} className="logout" src={SignOut} alt="" />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

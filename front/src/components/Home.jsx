@@ -3,9 +3,6 @@ import Indicator from "./Indicator";
 const Home = () => {
   return (
     <div className="home-container">
-      <div className="right">
-        <Indicator />
-      </div>
       <div className="content-container">
         <h1>Welcome to my Mern-Authentication App</h1>
         <p>

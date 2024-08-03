@@ -1,9 +1,13 @@
-const About = () => {
-    return (
-        <div>
-            <h1>About</h1>
-        </div>
-    )
-}
+import Indicator from "./Indicator";
 
-export default About
+const About = () => {
+  return (
+    <div className="about-container">
+      <div className="content-container">
+        <h1>About</h1>
+      </div>
+    </div>
+  );
+};
+
+export default About;

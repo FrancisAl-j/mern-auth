@@ -6,6 +6,7 @@ import Signup from "./components/Signup";
 import Signin from "./components/Signin";
 import Profile from "./components/Profile";
 import PrivateRoute from "./components/PrivateRoute";
+import Indicator from "./components/Indicator";
 
 const App = () => {
   return (
@@ -14,6 +15,9 @@ const App = () => {
         <header>
           <Nav />
         </header>
+        <div>
+          <Indicator />
+        </div>
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/about" element={<About />}></Route>
