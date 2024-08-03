@@ -1,24 +1,10 @@
-import { useSelector } from "react-redux";
-import DefaultProfile from "../assets/profile.jpg";
-import SignOut from "../assets/logout.svg";
+import Indicator from "./Indicator";
 
 const Home = () => {
-  const { currentUser } = useSelector((state) => state.user);
-
   return (
     <div className="home-container">
-      <div className="pfp-container">
-        <img
-          className="pfp"
-          src={currentUser ? currentUser.profilePicture : DefaultProfile}
-          alt="profile"
-        />
-        <p>
-          {currentUser
-            ? currentUser.username
-            : `Guest${Math.floor(Math.random() * 999)}`}
-        </p>
-        <img className="logout" src={SignOut} alt="" />
+      <div className="right">
+        <Indicator />
       </div>
       <div className="content-container">
         <h1>Welcome to my Mern-Authentication App</h1>
@@ -29,6 +15,10 @@ const Home = () => {
           web-app also use google account to sign up and sign in to this
           website. Had an authentication to authenticate the user using
           cookie/token.
+        </p>
+        <br />
+        <p>
+          These are all the languages that I used building this web-application:
         </p>
       </div>
     </div>

@@ -257,3 +257,6 @@ ul li:hover {
 .pfp-container .logout:hover {
   fill: red;
 }
+.right {
+  align-self: flex-end;
+}
