@@ -35,10 +35,14 @@ nav {
   height: 100%;
   width: min(100% - 20px, 1300px);
   margin-inline: auto;
+  position: relative;
 }
 nav h1 {
   color: #fff;
   text-decoration: none;
+}
+.menu {
+  display: none;
 }
 ul {
   display: flex;
@@ -214,7 +218,7 @@ ul li:hover {
   flex-direction: column;
   padding: 20px;
   border-radius: 40px;
-  margin: 10px auto;
+  margin: 60px auto;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -301,4 +305,40 @@ ul li:hover {
 
 /* For smaller screen size */
 @media screen and (max-width: 600px) {
+  .pfp-container {
+    display: none;
+  }
+  ul {
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: -400%;
+    background: var(--darker);
+    width: 100%;
+    line-height: 60px;
+    z-index: 1;
+    padding: 10px 0;
+    transition: top 0.5s ease-in;
+  }
+  ul li {
+    display: block;
+    text-align: center;
+  }
+  .profilePicture {
+    display: block;
+    margin-inline: auto;
+    height: 60px;
+  }
+  ul li:hover {
+    background: none;
+    border-radius: 0;
+    border: solid #fff 0;
+  }
+  .menu {
+    display: block;
+  }
+  .show-menu {
+    top: 100%;
+    transition: top 0.5s ease-in;
+  }
 }
